@@ -1,7 +1,21 @@
 function sum() {
-    let counter = 0;
-    counter = counter + 1;
+  let counter = 0;
+  return () => {
+    counter++;
     console.log(counter);
+  };
 }
-sum();
-sum();
+
+const result = sum();
+result();
+result();
+result();
+result();
+result();
+
+const result2 = sum();
+result2()
+result2()
+result2()
+
+result();
