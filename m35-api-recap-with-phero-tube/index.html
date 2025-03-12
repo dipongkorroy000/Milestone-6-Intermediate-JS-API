@@ -18,17 +18,27 @@
             <div class="sort">
                 <button class="btn bg-gray-300 text-gray-700">Sort by View</button>
             </div>
-            <div class="blog btn bg-[#FF1F3D] text-white">
+            <div class="blog btn bg-[#FF1F3D] text-white border-none">
                 Blog
             </div>
         </nav>
     </header>
-    <nav id="category-container" class="flex justify-center py-5 gap-5">
-        <button class="btn btn-sm">All</button>
-        <button class="btn btn-sm">MUsic</button>
-        <button class="btn btn-sm">Comedy</button>
-        <button class="btn btn-sm">Drawing</button>
+    <nav id="category-ctn" class="flex justify-center py-5 gap-5">
+        <div>
+            <button onclick="videoDataApi()" class="btn btn-sm bg-[#FF1F3D] text-white border-none">All</button>
+        </div>
     </nav>
+    <section id="video-sec" class="w-11/12 grid grid-cols-4 gap-3 mx-auto">
+        <!-- videos here dynamic -->
+    </section>
+
+    <section class="w-11/12 m-auto grid grid-cols-4 gap-5" id="no-content-sec">
+        <div class="col-span-full flex flex-col items-center">
+            <img class="" src="./assets/Icon.png" alt="">
+            <h2 class="font-bold text-2xl">Oops!! Sorry, There is no content here</h2>
+        </div>
+    </section>
+
 
     <script src="script.js"></script>
 </body>
