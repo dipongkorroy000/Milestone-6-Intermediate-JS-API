@@ -9,14 +9,29 @@ function btnCategory(btns) {
     // 3 data step by step--
     const ctDiv = document.createElement("div");
     ctDiv.innerHTML = `
-        <button onclick = "musicComedyVideos(${btn.category_id})" class = "btn btn-sm hover:bg-[#FF1F3D] hover:text-white"> ${btn.category}</button>
-        `;
+    <button id = "btn-${btn.category_id}"
+    onclick = "musicComedyVideos(${btn.category_id})"
+    class = "btn btn-sm hover:bg-[#FF1F3D] hover:text-white">
+    ${btn.category}
+    </button>
+    `;
     ctCtn.appendChild(ctDiv);
   }
 }
+const musicComedyVideos = (id) => {
+  const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+  console.log(url);
+  fetch(url)
+  .then(pro => pro.json())
+  .then(data => {
+    const clickedBtn = document.getElementById(`btn-${id}`)
+    allVideos(data.category)
+  })
+}
 dataApi();
 
-function videoDataApi(allData) {
+
+function videoDataApi() {
   fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
     .then((promise) => promise.json())
     .then((data) => allVideos(data.videos));
@@ -24,6 +39,17 @@ function videoDataApi(allData) {
 function allVideos(videos) {
   const videoSec = document.getElementById("video-sec");
   videoSec.innerHTML = "";
+
+  if (videos.length === 0) {
+    videoSec.innerHTML = `
+    <div class="col-span-full my-72">
+      <div class="w-72 m-auto flex flex-col justify-center items-center text-center">
+        <img class="" src="./assets/Icon.png" alt="">
+        <h2 class="font-bold text-2xl">Oops!! Sorry, There is no content here</h2>
+      </div>
+    </div>
+    `;
+  }
   videos.forEach((video) => {
       const videoCard = document.createElement("div");
     videoCard.innerHTML = `
@@ -59,10 +85,3 @@ function allVideos(videos) {
 }
 // videoDataApi();
 
-const musicComedyVideos = (id) => {
-  const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
-  // console.log(url);
-  fetch(url)
-    .then(pro => pro.json())
-  .then(data => allVideos(data.category))
-}
