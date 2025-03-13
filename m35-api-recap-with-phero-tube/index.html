@@ -7,6 +7,12 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .active-btn-color {
+            background-color: #FF1F3D;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,22 +22,57 @@
                 <img class="w-32 h-8" src="./assets/Logo.png" alt="" srcset="">
             </div>
             <div class="sort">
-                <button class="btn bg-gray-300 text-gray-700">Sort by View</button>
+                <label class="input">
+                    <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                            stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input id="search-input" type="search" required placeholder="Search" />
+                </label>
             </div>
             <div class="blog btn bg-[#FF1F3D] text-white border-none">
-                Blog
+                Sort by View
             </div>
         </nav>
     </header>
+
     <nav id="category-ctn" class="flex justify-center py-5 gap-5">
         <div>
-            <button onclick="videoDataApi()" class="btn btn-sm bg-[#FF1F3D] text-white border-none">All</button>
+            <button id="btn-all" onclick="videoDataApi()" class="btn btn-sm">
+                All
+            </button>
         </div>
     </nav>
+
+    <section id="loader" class="text-center">
+        <span class="loading loading-bars loading-xs"></span>
+    </section>
+
     <section id="video-sec" class="w-11/12 grid grid-cols-4 gap-3 mx-auto">
         <!-- videos here dynamic -->
-        
+
     </section>
+
+    <!-- modal -->
+    <!-- Open the modal using ID.showModal() method -->
+    <button class="btn" onclick="video_details.showModal()">open modal</button>
+    <dialog id="video_details" class="modal">
+        <div class="modal-box">
+            <div id="details-ctn-id">
+
+
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
 
     <script src="script.js"></script>
