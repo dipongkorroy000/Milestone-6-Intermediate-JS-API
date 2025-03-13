@@ -19,6 +19,7 @@ function btnCategory(btns) {
   }
 }
 function musicComedyVideos(id) {
+  loading();
   const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
   // console.log(url);
   fetch(url)
@@ -42,6 +43,7 @@ function colorRemove() {
 dataApi();
 
 function videoDataApi(searchText = '') {
+  loading();
   fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
     .then((promise) => promise.json())
     .then((data) => {
@@ -63,6 +65,7 @@ function allVideos(videos) {
       </div>
     </div>
     `;
+    loadingHide();
   }
   videos.forEach((video) => {
     const videoCard = document.createElement("div");
@@ -98,6 +101,7 @@ function allVideos(videos) {
     `;
     videoSec.appendChild(videoCard);
   });
+  loadingHide();
 }
 // videoDataApi();
 
@@ -136,5 +140,10 @@ document.getElementById('search-input').addEventListener('keyup', function (e) {
 });
 
 function loading() {
-  document.getElementById('loader')
+  document.getElementById('loader').classList.remove('hidden')
+  document.getElementById('video-sec').classList.add('hidden')
+}
+function loadingHide() {
+  document.getElementById('loader').classList.add('hidden')
+  document.getElementById('video-sec').classList.remove('hidden')
 }
